@@ -6,6 +6,7 @@ var index = 0;//添加自定义规则的索引数
 var splitArr = {};
 
 function executor() {
+    splitArr = {};//清空缓存
     var res = "";//拆分数据显示
     var it = $("#it").val();//输入待处理文本一行
     var xsp = $("#xsp").val();//拆分字符
@@ -24,16 +25,17 @@ function executor() {
         var xspi = $("#xspi" + i).val();
         var xspx = $("#xsp" + i).val();
         if (xspi && xspx && splitArr[xspi]) {
+            var xspiFix = xspi.substr(0,xspi.length-1);
             var _tmp = splitArr[xspi].split(xspx);
             $(_tmp).each(function (i, v) {
-                res += xspi + "(" + i + "):" + v + "<br/>";
-                splitArr[xspi + "(" + i + ")"] = v;
+                res += xspiFix + "." + i + "):" + v + "<br/>";
+                splitArr[xspiFix + "." + i +")"] = v;
             });
         }
     }
     var ks = Object.keys(splitArr);
     for(var i = ks.length; i>=0 ; i--){
-        ots = ots.split(ks[i]).join(splitArr[ks[i]]);
+        ots = ots.split(ks[i]).join("<span class='blc'>"+splitArr[ks[i]]+"</span>");
     }
     $("#ot").html(ots);
     $("#xspres").html(res);
