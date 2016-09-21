@@ -1,5 +1,5 @@
 /**
- * Created by chuxianming on 16/9/13.
+ * Created by ixx on 16/9/13.
  */
 //全局变量区
 var index = 0;//添加自定义规则的索引数
@@ -14,6 +14,8 @@ function executor() {
     if (!xsp) {
         return;
     }
+    //根据换行拆分输入,多行处理
+    var itLines = it.split("\n");
     //主规则处理
     var its = it.split(xsp);
     $(its).each(function (i, v) {
@@ -25,7 +27,7 @@ function executor() {
         var xspi = $("#xspi" + i).val();
         var xspx = $("#xsp" + i).val();
         if (xspi && xspx && splitArr[xspi]) {
-            var xspiFix = xspi.substr(0,xspi.length-1);
+            var xspiFix = xspi.substr(0,xspi.length-1);//去掉最后一个")"
             var _tmp = splitArr[xspi].split(xspx);
             $(_tmp).each(function (i, v) {
                 res += xspiFix + "." + i + "):" + v + "<br/>";
