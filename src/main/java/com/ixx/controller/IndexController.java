@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -16,9 +17,12 @@ import java.io.*;
 public class IndexController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String upload(@RequestParam("file") MultipartFile file) {
+    public @ResponseBody String upload(@RequestParam("file") MultipartFile file, @RequestParam("rule") String rule,
+                  @RequestParam("template") String template) {
         if (!file.isEmpty()) {
             try {
+                System.out.println(rule);
+                System.out.println(template);
                 //处理文本
                 BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
                 String line = null;

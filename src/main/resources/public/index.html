@@ -31,6 +31,12 @@
     <p><textarea class="xx" id="ots" rows="4" cols="100">123$(1)4$(1.0)56789</textarea></p>
     <p>输出内容:</p>
     <p><span id="ot"></span></p>
+    <p>上传要处理的txt文件:</p>
+    <form method="post" action="./upload" enctype="multipart/form-data">
+        <input type="hidden" name="rule" id="rule" />
+        <input type="hidden" name="template" id="template" />
+        <p><input type="file" name="file" />&nbsp;&nbsp;<input type="submit" value="提交" /></p>
+    </form>
     <p>拆分数据变量:</p>
     <p><span id="xspres"></span></p>
 </div>
