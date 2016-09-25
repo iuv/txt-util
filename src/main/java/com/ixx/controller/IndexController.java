@@ -74,6 +74,9 @@ public class IndexController {
                         String lineKey = tmp.substring(0, tmp.indexOf(")"));
                         String zrule = tmp.substring(tmp.indexOf(")") + 1);
                         String zline = all.get(lineKey + ")");
+                        if(zline == null) {
+                            continue;
+                        }
                         String[] zlines = zline.split(zrule);
                         //处理子规则拆分数据
                         int zi = 0;

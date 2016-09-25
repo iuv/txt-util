@@ -8,12 +8,12 @@
     <artifactId>TxtUtil</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!--资源库配置-->
-    <repositories>
-        <repository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>spring-releases</id>-->
+            <!--<url>https://repo.spring.io/libs-release</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
     <pluginRepositories>
         <pluginRepository>
             <id>spring-releases</id>
@@ -29,9 +29,9 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
-    <!-- 引用配置 -->
+     <!--引用配置-->
     <dependencies>
-        <!-- spring boot -->
+         <!--spring boot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
