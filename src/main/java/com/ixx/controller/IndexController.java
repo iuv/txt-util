@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +28,8 @@ import java.util.Map;
 public class IndexController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody String upload(@RequestParam("file") MultipartFile file, @RequestParam("rule") String rule,
-                  @RequestParam("template") String template) {
+    public  @ResponseBody  String upload(@RequestParam("file") MultipartFile file, @RequestParam("rule") String rule,
+                                       @RequestParam("template") String template, HttpServletResponse response) {
         if (!file.isEmpty()&& !StringUtils.isEmpty(rule) && !StringUtils.isEmpty(template)) {
             try {
                 System.out.println(rule);
@@ -40,7 +42,16 @@ public class IndexController {
                     sb.append(execute(rule, template, line)).append("\n");
                 }
                 System.out.println(sb.toString());
-                return file.getName();
+                //将处理过的内容返回下载
+                response.setCharacterEncoding("utf-8");
+                response.setContentType("multipart/form-data");
+                response.setHeader("Content-Disposition", "attachment;fileName=result.txt");
+                OutputStream outputStream = response.getOutputStream();
+                outputStream.write(sb.toString().getBytes());
+                outputStream.flush();
+                outputStream.close();
+                br.close();
+                return null;
             } catch (Exception e) {
                 e.printStackTrace();
                 return "error";
