@@ -7,13 +7,6 @@
     <groupId>com.ixx</groupId>
     <artifactId>txt-util</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <!--资源库配置-->
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>spring-releases</id>-->
-            <!--<url>https://repo.spring.io/libs-release</url>-->
-        <!--</repository>-->
-    <!--</repositories>-->
     <pluginRepositories>
         <pluginRepository>
             <id>spring-releases</id>
@@ -27,7 +20,7 @@
         <version>1.3.6.RELEASE</version>
     </parent>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.7</java.version>
     </properties>
      <!--引用配置-->
     <dependencies>

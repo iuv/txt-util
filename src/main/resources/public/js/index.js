@@ -28,7 +28,7 @@ function executor() {
     });
     //子规则处理
     for (var i = 0; i < index; i++) {
-        var xspi = $("#xspi" + i).val();
+        var xspi = "$("+$("#xspi" + i).val()+")";
         var xspx = $("#xsp" + i).val();
         rule.z.push(xspi+xspx);
         if (xspi && xspx && splitArr[xspi]) {
@@ -51,7 +51,7 @@ function executor() {
     $("#rule").val(JSON.stringify(rule));
 }
 function addxsp() {
-    $("#xspdiv").append('<p id="xspp' + index + '">将:<input onkeyup="executor()" id="xspi' + index + '" type="text" width="50"/>按:<input onkeyup="executor()" id="xsp' + index + '" type="text" width="50"/>分隔<button onclick="delxsp(' + index + ')">&nbsp;&nbsp;-&nbsp;&nbsp;</button></p>');
+    $("#xspdiv").append('<p id="xspp' + index + '">将:$(<input onkeyup="executor()" id="xspi' + index + '" type="text" width="50"/>)按:<input onkeyup="executor()" id="xsp' + index + '" type="text" width="50"/>分隔<button onclick="delxsp(' + index + ')">&nbsp;&nbsp;-&nbsp;&nbsp;</button></p>');
     index++;
 }
 function delxsp(i) {
