@@ -28,7 +28,7 @@
 <body>
 <div id="bdiv">
     <h1>文本处理工具 v0.1</h1>
-    <p>备注:所有出现变量输入的地方,使用$(index[.index])引用拆分后的变量,或点击下方变量插入光标所在位置</p>
+    <p>备注:所有出现变量输入的地方,使用$(index[.index])引用拆分后的变量</p>
     <hr />
     <p>输入一行要处理的文本:</p>
     <p><textarea class="xx" id="it" rows="4" cols="100">a b c  d e f  1 2 3</textarea></p>
@@ -37,7 +37,7 @@
         <p>根据:<input class="xx" id="xsp" type="text" width="50"/>分隔文本<button id="ab">&nbsp;&nbsp;+&nbsp;&nbsp;</button></p>
     </div>
     <hr />
-    <p>定义输出格式(参数使用$(index[.index])代替):</p>
+    <p>定义输出格式(参数使用$(index[.index])代替,或点击下方变量插入光标所在位置):</p>
     <p><textarea class="xx" id="ots" rows="4" cols="100">123$(1)4$(1.0)56789</textarea></p>
     <p>输出内容:</p>
     <p><span id="ot"></span></p>
