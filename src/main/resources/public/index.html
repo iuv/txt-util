@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>文本处理工具</title>
     <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery-selection.js"></script>
     <script src="js/index.js"></script>
     <style type="text/css">
         /*body { text-align: center; }*/
@@ -13,12 +14,21 @@
         .blc {
             color:red;
         }
+        .keyspan {
+            color:red;
+            background-color: khaki;
+            border: 1px double #000;
+            padding: 1px 4px;
+            margin: 1px 0;
+            display: inline-block;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <div id="bdiv">
     <h1>文本处理工具 v0.1</h1>
-    <p>备注:所有出现变量输入的地方,使用$(index[.index])引用拆分后的变量</p>
+    <p>备注:所有出现变量输入的地方,使用$(index[.index])引用拆分后的变量,或点击下方变量插入光标所在位置</p>
     <hr />
     <p>输入一行要处理的文本:</p>
     <p><textarea class="xx" id="it" rows="4" cols="100">a b c  d e f  1 2 3</textarea></p>

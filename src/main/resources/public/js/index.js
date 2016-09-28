@@ -23,8 +23,7 @@ function executor() {
     var its = it.split(xsp);
     rule["root"] = xsp;
     $(its).each(function (i, v) {
-        res += "$(" + i + "):" + v + "<br/>";
-        splitArr["$(" + i + ")"] = v;
+        res += formatRes("$(",i,v);
     });
     //子规则处理
     for (var i = 0; i < index; i++) {
@@ -32,11 +31,10 @@ function executor() {
         var xspx = $("#xsp" + i).val();
         rule.z.push(xspi+xspx);
         if (xspi && xspx && splitArr[xspi]) {
-            var xspiFix = xspi.substr(0,xspi.length-1);//去掉最后一个")"
+            var xspiFix = xspi.substr(0,xspi.length-1)+".";//去掉最后一个")"
             var _tmp = splitArr[xspi].split(xspx);
             $(_tmp).each(function (i, v) {
-                res += xspiFix + "." + i + "):" + v + "<br/>";
-                splitArr[xspiFix + "." + i +")"] = v;
+                res += formatRes(xspiFix, i, v);
             });
         }
     }
@@ -50,14 +48,29 @@ function executor() {
     $("#template").val(template);
     $("#rule").val(JSON.stringify(rule));
 }
+//格式化输出拆分数据
+function formatRes(head, i, v){
+    var key = head + i + ")";
+    var res = "<span class='keyspan' onclick='setKey(\""+key+"\")'>" + key + "</span>:" + v + "<br/>";
+    splitArr[key] = v;
+    return res;
+}
+//在模板中设置key
+function setKey(key){
+    $("#ots").insertAtCaret(key);
+    executor();//重新输出内容
+}
+//添加子规则
 function addxsp() {
     $("#xspdiv").append('<p id="xspp' + index + '">将:$(<input onkeyup="executor()" id="xspi' + index + '" type="text" width="50"/>)按:<input onkeyup="executor()" id="xsp' + index + '" type="text" width="50"/>分隔<button onclick="delxsp(' + index + ')">&nbsp;&nbsp;-&nbsp;&nbsp;</button></p>');
     index++;
 }
+//删除子规则
 function delxsp(i) {
     $("#xspp" + i).remove();
     executor();
 }
+//绑定事件
 $(document).ready(function () {
     $(".xx").bind("keyup", executor);
     $("#ab").bind("click", addxsp);

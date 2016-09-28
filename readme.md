@@ -3,7 +3,7 @@
 简单的文本处理小程序
 
 ## 运行环境
->jdk1.7+
+>jdk1.7+ 
 >maven3+
 
 ## 程序启动
@@ -17,7 +17,14 @@
 
     下载后进入项目目录执行 mvn 命令打包,再使用java -jar target/txt-util***.jar 启动服务
 
-启动完成后在浏览器中输入 http://localhost:8080 打开程序
+程序默认使用8000端口,如需要修改可以修改源码中的application.properties
+或者在jar包同目录下创建application.properties文件,添加内容:
+>server.port=8000
+
+端口号改为自己需要的端口,启动使用使用 java -jar txt-util.jar --spring.config.location=./application.properties
+
+
+启动完成后在浏览器中输入 http://localhost:8000 打开程序
 
 ## 界面说明
 *截图
