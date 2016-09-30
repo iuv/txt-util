@@ -18,19 +18,23 @@ public class TxtUtil {
 
     private static final Logger log = LoggerFactory.getLogger(TxtUtil.class);
 
-    private static Map<String, String> rules = new HashMap<>();
+    private static final Properties rules = new Properties();
 
     /**
      * 获取配置文件配置(如果有的话)
      */
-    static{
-        Properties p = new Properties();
+    static {
         try {
-            InputStream in = Object.class.getResourceAsStream("txtutil.properties");
-            if(in != null){
-                System.out.println("..");
-                p.load(in);
-                System.out.println("a:"+p.getProperty("a"));
+            ClassLoader CL = TxtUtil.class.getClass().getClassLoader();
+            String confPath = "txtutil.properties";
+            InputStream inn;
+            if (CL != null) {
+                inn = CL.getResourceAsStream(confPath);
+            } else {
+                inn = ClassLoader.getSystemResourceAsStream(confPath);
+            }
+            if (inn != null) {
+                rules.load(inn);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,53 +43,54 @@ public class TxtUtil {
 
     /**
      * 注册规则
-     * @param key 规则key
+     *
+     * @param key  规则key
      * @param rule 规则内容(json格式,可使用首页生成)
      */
-    public static void regRule(String key, String rule){
+    public static void regRule(String key, String rule) {
         rules.put(key, rule);
     }
 
     //调用规则方法
 
-    public static String handle(String ruleKey, String template, String line){
-        String rule = rules.get(ruleKey);
-        if(rule == null){
+    public static String handle(String ruleKey, String template, String line) {
+        if (rules.get(ruleKey) == null) {
             log.error("the rule is not found by key");
             return null;
         }
+        String rule = rules.get(ruleKey).toString();
         JSONObject jo = JSON.parseObject(rule);
         Map<String, String> all = new HashMap<>();
         List<String> keys = new ArrayList<>();
         //主规则不能为空
-        if(jo.getString("root") != null){
-           String[] lines = line.split(jo.getString("root"));
+        if (jo.getString("root") != null) {
+            String[] lines = line.split(jo.getString("root"));
             int i = 0;
             //处理主规则拆分数据
             for (String s : lines) {
-                all.put("$("+i+")", s);
-                keys.add("$("+i+")");
+                all.put("$(" + i + ")", s);
+                keys.add("$(" + i + ")");
                 i++;
             }
             //获取子规则
-            if(jo.getJSONArray("z") != null){
+            if (jo.getJSONArray("z") != null) {
                 JSONArray ja = jo.getJSONArray("z");
                 String[] zs = new String[ja.size()];
                 ja.toArray(zs);
                 for (String tmp : zs) {
-                    if(tmp.indexOf(")") > 0) {
+                    if (tmp.indexOf(")") > 0) {
                         String lineKey = tmp.substring(0, tmp.indexOf(")"));
                         String zrule = tmp.substring(tmp.indexOf(")") + 1);
                         String zline = all.get(lineKey + ")");
-                        if(zline == null) {
+                        if (zline == null) {
                             continue;
                         }
                         String[] zlines = zline.split(zrule);
                         //处理子规则拆分数据
                         int zi = 0;
                         for (String s : zlines) {
-                            all.put(lineKey+"."+zi+")", s);
-                            keys.add(lineKey+"."+zi+")");
+                            all.put(lineKey + "." + zi + ")", s);
+                            keys.add(lineKey + "." + zi + ")");
                             zi++;
                         }
                     }
@@ -94,7 +99,7 @@ public class TxtUtil {
                 for (int i1 = keys.size() - 1; i1 >= 0; i1--) {
                     String key = keys.get(i1);
                     String val = all.get(key);
-                    key = key.replace("$","\\$").replace("(","\\(").replace(")","\\)");
+                    key = key.replace("$", "\\$").replace("(", "\\(").replace(")", "\\)");
                     template = template.replaceAll(key, val);
                 }
             }
