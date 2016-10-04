@@ -78,7 +78,7 @@ public class TxtUtil {
                 String[] zs = new String[ja.size()];
                 ja.toArray(zs);
                 for (String tmp : zs) {
-                    if (tmp.indexOf(")") > 0) {
+                    if (tmp.indexOf(")") > 0 && tmp.indexOf(")") < tmp.length()-1) {
                         String lineKey = tmp.substring(0, tmp.indexOf(")"));
                         String zrule = tmp.substring(tmp.indexOf(")") + 1);
                         String zline = all.get(lineKey + ")");

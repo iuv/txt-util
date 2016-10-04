@@ -47,6 +47,7 @@ function executor() {
     //上传属性设值
     $("#template").val(template);
     $("#rule").val(JSON.stringify(rule));
+    $("#show_rule").text(JSON.stringify(rule));
 }
 //格式化输出拆分数据
 function formatRes(head, i, v){
