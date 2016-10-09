@@ -1,4 +1,4 @@
-package com.ixx;
+package com.jianpage;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

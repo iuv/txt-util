@@ -1,6 +1,6 @@
-package com.ixx.controller;
+package com.jianpage.controller;
 
-import com.ixx.util.TxtUtil;
+import com.jianpage.util.TxtUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

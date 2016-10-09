@@ -4,10 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ixx</groupId>
+    <groupId>com.jianpage</groupId>
     <artifactId>txt-util</artifactId>
     <version>0.1-RELEASE</version>
-
+    <packaging>jar</packaging>
+    <name>Text content processing tools</name>
+    <url>https://github.com/iuv/txt-utils</url>
+    <url>https://coding.net/u/ixx/p/txt-utils/</url>
+    <description>Text content processing tools</description>
+    <inceptionYear>2016</inceptionYear>
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <id>ixx</id>
+            <name>ixx</name>
+            <email>285771659@qq.com</email>
+        </developer>
+    </developers>
     <!--父项目配置-->
     <parent>
         <groupId>org.springframework.boot</groupId>
