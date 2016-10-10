@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
     <name>Text content processing tools</name>
     <url>https://github.com/iuv/txt-utils</url>
-    <url>https://coding.net/u/ixx/p/txt-utils/</url>
+    <!--<url>https://coding.net/u/ixx/p/txt-utils/</url>-->
     <description>Text content processing tools</description>
     <inceptionYear>2016</inceptionYear>
     <!-- 开发者信息 -->
