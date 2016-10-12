@@ -2,6 +2,34 @@
 
 简单的文本处理小程序
 
+## 程序引用方法
+### 1.在项目中添加maven依赖 
+ 
+```xml
+<dependency>
+  <groupId>com.jianpage</groupId>
+  <artifactId>txt-util</artifactId>
+  <version>0.1-RELEASE</version>
+</dependency>
+```
+
+### 2.添加资源文件txtutil.properties 
+
+在项目资源目录下添加 `txtutil.properties` 文件,内容格式如:
+>test={"z":["$(0);"],"root":","}
+
+可在页面配置规则时获取输出的规则
+
+### 3.程序中引用 
+
+```java
+/**
+* 参数 配置规则key, 输出内容模板, 需要处理内容
+* 返回 按模板输出处理后的内容String
+*/
+TxtUtil.handle("test", template, line);
+```
+
 ## 运行环境
 >jdk1.7+ 
 >maven3+
