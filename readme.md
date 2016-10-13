@@ -6,12 +6,29 @@
 ### 1.在项目中添加maven依赖 
  
 ```xml
-<dependency>
-  <groupId>com.jianpage</groupId>
-  <artifactId>txt-util</artifactId>
-  <version>0.1-RELEASE</version>
-</dependency>
+        <dependency>
+            <groupId>com.jianpage</groupId>
+            <artifactId>txt-util</artifactId>
+            <version>0.1-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.12</version>
+        </dependency>
 ```
+
+如果已有slf4j和fastjson依赖则只添加txt-util即可
 
 ### 2.添加资源文件txtutil.properties 
 
@@ -55,6 +72,6 @@ TxtUtil.handle("test", template, line);
 启动完成后在浏览器中输入 http://localhost:8000 打开程序
 
 ## 界面说明
-*截图
+* 截图
 
 ![界面](build/vm.png)
