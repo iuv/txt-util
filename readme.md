@@ -33,7 +33,9 @@
 ### 2.添加资源文件txtutil.properties 
 
 在项目资源目录下添加 `txtutil.properties` 文件,内容格式如:
->test={"z":["$(0);"],"root":","}
+```
+test={"z":["$(0);"],"root":","}
+```
 
 可在页面配置规则时获取输出的规则
 
