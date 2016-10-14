@@ -1,9 +1,11 @@
 #txt-util
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.alibaba/fastjson/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jianpage/txt-util)
 
 简单的文本处理小程序
 
 ## 程序引用方法
-### 1.在项目中添加maven依赖 
+### 1.在项目中添加maven依赖 (或者直接下载build下的txt-util-0.1-RELEASE.jar)包
  
 ```xml
         <dependency>
