@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,14 +52,43 @@ public class TxtUtil {
         rules.put(key, rule);
     }
 
-    //调用规则方法
-
-    public static String handle(String ruleKey, String template, String line) {
-        if (rules.get(ruleKey) == null) {
+    /**
+     *
+     * @param ruleKey 规则key
+     * @param template 要输出的模板内容
+     * @param lineList 要处理的数据集合
+     * @return 按模板将处理后的数据输出List
+     */
+    public static List<String> handle(String ruleKey, String template, List<String> lineList){
+        String rule = rules.getProperty(ruleKey);
+        if(StringUtil.allIsNotEmptys(ruleKey, template, rule) && lineList != null && lineList.size()>0){
+            List<String> retList = new ArrayList<String>(lineList.size());
+            for (String tmp : lineList) {
+                retList.add(handleBase(rule, template, tmp));
+            }
+            return retList;
+        } else {
             log.error("the rule is not found by key");
             return null;
         }
-        String rule = rules.get(ruleKey).toString();
+    }
+
+    /**
+     * 调用规则方法
+     * @param ruleKey 规则key
+     * @param template 要输出的模板内容
+     * @param line 要处理的数据一行
+     * @return 按模板将处理后的数据输出
+     */
+    public static String handle(String ruleKey, String template, String line) {
+        String rule = rules.getProperty(ruleKey);
+        if(StringUtil.allIsNotEmptys(ruleKey, template, line, rule)){
+            return handleBase(rule, template, line);
+        } else {
+            return null;
+        }
+    }
+    private static String handleBase(String rule, String template, String line) {
         JSONObject jo = JSON.parseObject(rule);
         Map<String, String> all = new HashMap<>();
         List<String> keys = new ArrayList<>();
