@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,7 +67,7 @@ public class TxtUtil {
             }
             return retList;
         } else {
-            log.error("the rule is not found by key");
+            log.error(" param is null ruleKey:"+ruleKey+",rule:"+rule+", template:"+template+", lineList.size:"+ lineList.size());
             return null;
         }
     }
@@ -85,9 +84,18 @@ public class TxtUtil {
         if(StringUtil.allIsNotEmptys(ruleKey, template, line, rule)){
             return handleBase(rule, template, line);
         } else {
+            log.error(" param is null ruleKey:"+ruleKey+",rule:"+rule+", template:"+template+", line"+ line);
             return null;
         }
     }
+
+    /**
+     * 处理基础方法
+     * @param rule
+     * @param template
+     * @param line
+     * @return
+     */
     private static String handleBase(String rule, String template, String line) {
         JSONObject jo = JSON.parseObject(rule);
         Map<String, String> all = new HashMap<>();
