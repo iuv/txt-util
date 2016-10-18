@@ -106,8 +106,8 @@ public class TxtUtil {
             int i = 0;
             //处理主规则拆分数据
             for (String s : lines) {
-                all.put("$(" + i + ")", s);
-                keys.add("$(" + i + ")");
+                all.put(String.valueOf(i), s);
+                keys.add(String.valueOf(i));
                 i++;
             }
             //获取子规则
@@ -117,9 +117,9 @@ public class TxtUtil {
                 ja.toArray(zs);
                 for (String tmp : zs) {
                     if (tmp.indexOf(")") > 0 && tmp.indexOf(")") < tmp.length()-1) {
-                        String lineKey = tmp.substring(0, tmp.indexOf(")"));
+                        String lineKey = tmp.substring(2, tmp.indexOf(")"));
                         String zrule = tmp.substring(tmp.indexOf(")") + 1);
-                        String zline = all.get(lineKey + ")");
+                        String zline = all.get(lineKey);
                         if (zline == null) {
                             continue;
                         }
@@ -127,8 +127,8 @@ public class TxtUtil {
                         //处理子规则拆分数据
                         int zi = 0;
                         for (String s : zlines) {
-                            all.put(lineKey + "." + zi + ")", s);
-                            keys.add(lineKey + "." + zi + ")");
+                            all.put(lineKey + "." + zi, s);
+                            keys.add(lineKey + "." + zi);
                             zi++;
                         }
                     }
@@ -137,7 +137,7 @@ public class TxtUtil {
                 for (int i1 = keys.size() - 1; i1 >= 0; i1--) {
                     String key = keys.get(i1);
                     String val = all.get(key);
-                    key = key.replace("$", "\\$").replace("(", "\\(").replace(")", "\\)");
+                    key = "\\$\\("+key + "\\)";
                     template = template.replaceAll(key, val);
                 }
             }
