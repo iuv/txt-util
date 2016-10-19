@@ -48,6 +48,7 @@ function executor() {
     $("#template").val(template);
     $("#rule").val(JSON.stringify(rule));
     $("#show_rule").text(JSON.stringify(rule));
+    $("#show_rule_class").text(JSON.stringify(rule).split("\"").join("\\\""));
 }
 //格式化输出拆分数据
 function formatRes(head, i, v){
