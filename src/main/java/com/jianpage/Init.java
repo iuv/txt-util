@@ -11,6 +11,6 @@ import static org.springframework.boot.SpringApplication.run;
 @SpringBootApplication
 public class Init {
     public static void main(String args[]){
-        run(Init.class);
+        run(Init.class, args);
     }
 }
