@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本处理工具-在线版</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery-selection.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/github-fork-ribbon.min.js"></script>
+    <style type="text/css">
+        /*body { text-align: center; }*/
+        #bdiv {
+            margin: 0 auto;
+        }
+        .blc {
+            color:red;
+        }
+        .keyspan {
+            color:red;
+            background-color: khaki;
+            border: 1px double #000;
+            padding: 1px 4px;
+            margin: 1px 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .xdiv{
+            display: inline-block;vertical-align: top;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="bdiv">
+    <h1>文本处理工具 v0.1 在线版<span style="color: #e2500a;font-size: 18px;">(大文件请自行部署后台版处理)</span></h1>
+    <p>备注:所有出现变量输入的地方,使用$(index[.index])引用拆分后的变量</p>
+    <hr />
+    <div class="xdiv" style="width: 400px;">
+        <p>输入处理的文本:</p>
+        <p><textarea class="xx" id="it" style="width: 400px; height: 400px;">a b c  d e f  1 2 3
+a b c  d e f  1 2 3
+        </textarea></p>
+    </div>
+    <div class="xdiv" style="width: 500px;">
+        <div id="xspdiv">
+            <p>根据:<input class="xx" id="xsp" type="text" width="50"/>分隔文本<button id="ab">&nbsp;&nbsp;+&nbsp;&nbsp;</button></p>
+        </div>
+        <p>定义输出格式(参数使用$(index[.index])代替,或点击下方变量插入光标所在位置):</p>
+        <p><textarea class="xx" id="ots" style="width: 400px; height: 100px;">123$(1)4$(1.0)56789</textarea></p>
+        
+        <p>输出内容预览:</p>
+        <p><span id="ot"></span></p>
+        <p>拆分数据变量:</p>
+        <p><span id="xspres"></span></p>
+    </div>
+    <div>
+        <button onclick="execOut()">处理输出</button>
+        <p>输出：</p>
+        <p><textarea id="out_txt" style="width: 800px; height: 400px;"></textarea></p>
+    </div>
+</div>
+<script type="text/javascript">
+    var fg = new githubFork({
+        type: 'black',
+        url: 'https://github.com/iuv/txt-util',
+    });
+</script>
+</body>
+</html>
